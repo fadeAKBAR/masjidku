@@ -170,6 +170,11 @@ export default function AdminPanel({ data, onRefreshData, onClose }: AdminPanelP
         body: JSON.stringify({ username, password })
       });
 
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Respon server tidak valid (bukan JSON). Silakan coba lagi nanti.");
+      }
+
       const body = await res.json();
       if (!res.ok) {
         throw new Error(body.message || "Login gagal.");
@@ -206,6 +211,11 @@ export default function AdminPanel({ data, onRefreshData, onClose }: AdminPanelP
         },
         body: JSON.stringify(payload)
       });
+
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Respon server tidak valid (bukan JSON). Silakan coba lagi nanti.");
+      }
 
       const body = await res.json();
       if (!res.ok) {
