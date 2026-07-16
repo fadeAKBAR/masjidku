@@ -1,6 +1,0 @@
-{
-  "name": "Masjid Nurul Falah Samaoling",
-  "description": "Website resmi Masjid Nurul Falah Samaoling, Soppeng dengan jadwal salat akurat, galeri kegiatan, laporan keuangan transparan, proposal renovasi, dan donasi QRIS.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
