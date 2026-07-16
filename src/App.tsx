@@ -36,12 +36,18 @@ export default function App() {
   const fetchData = async () => {
     try {
       const res = await fetch("/api/public-data");
-      if (res.ok) {
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
         const json = await res.json();
         setData(json);
+      } else {
+        throw new Error("Server tidak mengembalikan data JSON. Silakan tunggu sebentar selagi sistem memuat.");
       }
-    } catch (err) {
-      console.error("Gagal memuat data dari server:", err);
+    } catch (err: any) {
+      console.error("Gagal memuat data dari server:", err.message || err);
     }
   };
 
